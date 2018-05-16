@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+    <div class="container form-container mt-5">
+        <h1 class="m-auto text-center p-2">Fiche race</h1>
+        <div class="mt-5 col-10 col-lg-6 mx-auto">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+        </div>
+
+        <div class="d-sm-block d-md-none">
+            <div class="d-flex justify-content-around pb-1">
+                <a href="{{ path('breed_index', { 'id': breed.id}) }}" class="btn btn-secondary fas fa-arrow-circle-left"></a>
+                <button class="btn btn-success fas fa-edit" type="submit" > Valider</button>
+                {{ form_end(edit_form) }}
+                {{ form_start(delete_form) }}
+                <button class="btn btn-danger fas fa-trash" type="submit"></button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+        <div class="d-none d-md-block">
+            <div class="d-flex justify-content-around pb-1">
+                <a href="{{ path('breed_index', { 'id': breed.id}) }}" class="btn btn-secondary fas fa-arrow-circle-left"> Retour</a>
+                <button class="btn btn-success fas fa-edit" type="submit" > Valider</button>
+                {{ form_end(edit_form) }}
+                {{ form_start(delete_form) }}
+                <button class="btn btn-danger fas fa-trash" type="submit"> Supprimer</button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

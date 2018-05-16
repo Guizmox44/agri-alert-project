@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Agri Alert{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href={{ asset('css/app.css') }}>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark nav-color">
+            <a class="navbar-brand" href="{{ path('homepage') }}">Agri Alert</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {{ app.request.attributes.get('_route') == 'homepage' ? 'active' }}">
+                        <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'admin' ? 'active' }}">
+                            <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER')%}
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'dashboard' ? 'active' }}">
+                            <a class="nav-link" href="{{ path('dashboard') }}">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'profil' ? 'active' }}">
+                            <a class="nav-link" href="{{ path('profil') }}">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'signin' ? 'active' }}">
+                            <a class="nav-link" href="{{ path('signin') }}">Inscription</a>
+                        </li>
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'login' ? 'active' }}">
+                            <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div id="wrapper" class="container-fluid p-0">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% block body %}{% endblock %}
+
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row d-flex  justify-content-center">
+                    <span class="mr-2 text-white"><i class="text-white far fa-copyright"></i> Team AA 2018 - </span>
+                    <a href="{{ path('cgu') }}" class="text-black text-center mr-2">CGU - </a>
+                    <a href="{{ path('team') }}" class="text-black text-center">La team AA</a>
+                </div>
+            </div>
+        </footer>
+
+
+
+        <script src="{{ asset('js/vendor.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

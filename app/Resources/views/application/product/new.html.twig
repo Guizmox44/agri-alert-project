@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+<div class="shadow-lg rounded container form-container mt-5 ">
+    <h1 class="text-center">Création produit</h1>
+    <hr>
+    <div class="mt-5 col-8 col-lg-6 mx-auto">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="d-flex flex-column d-md-flex flex-md-row justify-content-between p-3" >
+        <input type="submit" class="shadow-lg  btn btn-primary mb-1 mr-1" value="Créer" />
+    {{ form_end(form) }}
+    <a href="{{ path('product_index') }}" class="shadow-lg btn btn-secondary mb-1">Retour stock</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-around align-items-center">
+            <div class="card rounded bg-transparent border-0" style="width: 16rem;">
+                <img class="shadow-lg card-img-top rounded-circle" width="250" height="250" src="{{ asset('images/team/jessy.JPG') }}" alt="Jessy, membre de la team AA">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Jessy</h5>
+                    <p class="card-text">Developpeur web junior</p>
+                </div>
+            </div>
+            <div class="card rounded bg-transparent border-0" style="width: 16rem;">
+                <img class="shadow-lg card-img-top rounded-circle" width="250" height="250" src="{{ asset('images/team/kevin.jpg') }}" alt="Kévin, membre de la team AA">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Kévin</h5>
+                    <p class="card-text">Developpeur web junior</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mx-auto">
+            <div class="col-12 text-center">
+                <h1 class="text-dark"><i class="fas fa-quote-left"></i> Si tu suis la doctrine à la lettre alors tu entendras cette merveilleuse symfony.<i class="fas fa-quote-right"></i> </h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around">
+            <div class="card rounded bg-transparent border-0" style="width: 16rem;">
+                <img class="shadow-lg card-img-top rounded-circle" width="250" height="250" src="{{ asset('images/kenny.jpg') }}" alt="Halil, membre de la team AA">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Halil</h5>
+                    <p class="card-text">Developpeur web junior</p>
+                </div>
+            </div>
+            <div class="card rounded bg-transparent border-0" style="width: 16rem;" width="250" height="250">
+                <img class="shadow-lg card-img-top rounded-circle" src="{{ asset('images/team/guillaume.png') }}" alt="Guillaume, membre de la team AA">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Guillaume</h5>
+                    <p class="card-text">Developpeur web junior</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

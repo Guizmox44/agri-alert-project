@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+
+
+    <div class="container w-80 m-auto">
+        <h1 class="text-center text-dark">Stock</h1>
+            <div id="content" class=" shadow-lg rounded d-flex flex-column align-self-center flex-md-row justify-content-md-between col-md-6 mx-auto w-100  p-1 ">
+                <img src="{{ asset('images/logo/agri-200.png') }}" width="30" height="30" alt="Agri-alert" class="mx-auto mx-md-0"/>
+                <div class="d-flex flex-column flex-md-row ">
+                <label for="search" class="text-center mr-md-2 ">Rechercher un produit </label>
+                <input type="search" name ="search" id="search" class=" "/>
+                </div>
+                <img src="{{ asset('images/logo/agri-200.png') }}" width="30" height="30" alt="Agri-alert" class="mx-auto mx-md-0"/>
+            </div>
+        <div id="result" class="w-50 mx-auto text-center"> </div>
+
+        <div class="shadow-lg rounded container form-container mt-5">
+            <div id="add-product" class=" d-flex justify-content-center">
+            <a href="{{ path('product_new') }}" type="button" class=" shadow-lg btn my-2 "><i class="fas fa-plus-circle"></i> Produit </a>
+            </div>
+        {% for product in products %}
+
+            <table class="table table-striped table-hoverable mt-2 text-center product" id="{{ product.id }}" >
+
+                <thead><tr><th colspan="2" class="shadow-lg bg-light h4"><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.label|upper }}</a></th></tr></thead>
+
+                <tbody>
+                    <tr><th>Categorie</th><td>{{ product.category.label }}</td></tr>
+                    {% if product.quantity <= product.alert %}
+                    <tr><th><i class="shadow-lg fas fa-exclamation-triangle text-warning"></i> Quantité </th><td><span class=" shadow-lg text-alert bg-warning p-2 rounded">{{ product.quantity }} {{ product.unit }}</span></td></tr>
+                    {% else %}
+                    <tr><th>Quantité</th><td>{{ product.quantity }} {{ product.unit }}</td></tr>
+                    {% endif %}
+                    <tr>
+                        {% if date(product.expiryDate) < date() %}
+                            <th><i class="fas fa-minus-circle text-danger bg-white rounded-circle "></i> Date d'expiration </th>
+                            <td><span class="text-alert bg-danger p-2 rounded">{{ product.expiryDate|date('d-m-Y') }}</span></td>
+                        {%  else %}
+                            <th> Date d'expiration </th>
+                        <td> {% if product.expiryDate %}{{ product.expiryDate|date('d-m-Y ') }}{% endif %} </td>
+                         {% endif %}
+                    </tr>
+                    <tr><th>Alerte</th><td>{{ product.alert }}</td></tr>
+                    <tr><th>Actions</th>
+                        <td>
+                            <a href="{{ path('product_show', { 'id': product.id }) }}" class="shadow-lg badge badge-primary p-2">voir</a>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}" class="shadow-lg badge badge-success p-2">modifier</a>
+                        </td>
+                    </tr>
+                 </tbody>
+            </table>
+
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/search.js') }}"></script>
+    <script type="text/javascript">
+        var productSearch = "{{ path('search_product') }}";
+    </script>
+{% endblock %}

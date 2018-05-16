@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+    <div class="container p-5">
+        <h1 class="text-center h1-orange">Tableau de bord Admin</h1>
+        <hr class="hr-orange">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <a href="{{ path('admin_user') }}">
+                <div class="rad-info-box txt-color">
+                    <i class="fas fa-users"></i>
+                    <span class="heading">Utilisateurs inscrits</span>
+                    <span class="value"><span>{{ totalUser }}</span></span>
+                </div>
+                </a>
+            </div>
+            <div class="col-12 col-lg-6">
+                <a href="{{ path('admin_message') }}">
+                <div class="rad-info-box txt-color">
+                    <i class="fas fa-envelope"></i>
+                    <span class="heading">Messages reçus</span>
+                    <span class="value">
+                        <span>
+                            {% if totalMessage != 0 %}
+                            {{ totalMessage }}
+                            {% else %}
+                                Aucun message
+                            {% endif %}
+                        </span>
+                    </span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

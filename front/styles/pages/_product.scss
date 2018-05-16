@@ -1,0 +1,28 @@
+li{
+  list-style: none;
+}
+
+td{
+  text-align: center;
+}
+
+.text-alert{
+  color:black;
+}
+
+@-webkit-keyframes clignote {
+  0%{color:transparent;}
+  100%{color:#F71010;}
+}
+
+.fa-minus-circle {
+  -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
+  -webkit-animation-duration: 1s; //on définit la durée de l'animation à 1s
+  -webkit-animation-iteration-count:infinite; //on dit que l'animation se répétera à l'infini.
+}
+
+#content{
+  background-color:#D27C4A;
+  width:70%;
+}
+

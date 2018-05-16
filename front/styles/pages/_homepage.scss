@@ -1,0 +1,76 @@
+#homepage-hero{
+  background-image: url(../images/homepage/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 92vh;
+}
+
+#homepage-hero-text{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & h2 {
+    text-transform: uppercase;
+    color: $background-color-nav;
+    font-family: $secondary-font;
+    background-color: $main-background-color;
+    padding: .4em;
+    border: 2px solid $color-nav-active;
+  }
+}
+
+@media (max-width: 330px)  {
+  img{
+    width:100px;
+  }
+  h2{
+    font-size: 1.5em;
+  }
+  #homepage-hero-text a{
+    padding:5px;
+  }
+  #homepage-hero-text a{
+    display: none;
+  }
+}
+
+@media (max-width: 450px)  {
+  img{
+    width:100px;
+  }
+  h1{
+    font-size: 2em;
+  }
+}
+
+@media (orientation: landscape) and (max-width:996px){
+  html{
+    min-width: 100%;
+  }
+  h1{
+    display: none;
+  }
+  #homepage-hero-text h2 {
+    margin-top: 5px;
+    font-size: 1em;
+  }
+  #homepage-hero-text {
+    padding:0px;
+    width:60%;
+  }
+  img{
+    width:20%;
+  }
+  #homepage-hero-text a{
+   display: none;
+  }
+  #js-button-navigation-open{
+    top:0;
+  }
+}
+

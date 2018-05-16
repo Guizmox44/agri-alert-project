@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{# @TODO menu de navigation #}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% include ('application/slidenav.html.twig') %}
+
+    {% for task in tasks %}
+        <p id="{{ task.id }}" data-time="{{ task.day|date('j-n-Y') }}" class="task-main">
+			{{ task.title|length > 10 ? task.title|slice(0, 10) ~ '...' : task.title }}
+		</p>
+    {%  endfor %}
+
+    <div class="calendar-main w-80 m-auto">
+        <div id="calendar-title" class="text-center">
+            <i class="fas fa-chevron-left calendar-switch"></i>
+            <h1 id="title-calendar"></h1>
+            <i class="fas fa-chevron-right calendar-switch"></i>
+        </div>
+		<div id="calendar-textual-day"></div>
+        <div id="calendar-container"></div>
+    </div>
+
+    {{ include('application/calendar/form/add_form.html.twig') }}
+
+{%  endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/calendar.js') }}"></script>
+    <script type="text/javascript">
+        var routeCalendarShow = "{{ path('calendar_show', {'day': 'day'})|escape('js') }}";
+        var routeUpdateTask = "{{ path('calendar_update') }}";
+    </script>
+{% endblock %}

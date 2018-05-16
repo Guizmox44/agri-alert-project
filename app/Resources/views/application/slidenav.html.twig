@@ -1,0 +1,14 @@
+{% block body %}
+    <div id="mySidenav" class="sidenav spacing-top">
+        <button id="js-button-navigation-close" class="closebtn">&times;</button>
+        <a href="{{ path('product_index')}}">Stock</a>
+        <a href="{{ path('cheptel')}}">Gestion du cheptel</a>
+        <a href="{{ path('calendar_main')}}">Calendrier</a>
+        <a href="{{ path('message_list')}}">Contact</a>
+    </div>
+
+    <div id="js-button-navigation-open" class="buttond-style-menu">
+		<img class="button-image" src="{{ asset('images/logo/agri-200.png') }}" alt="logo menu exploitation">
+		<span>Exploitation</span>
+	</div>
+{% endblock %}

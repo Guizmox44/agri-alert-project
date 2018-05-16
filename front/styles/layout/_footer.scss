@@ -1,0 +1,10 @@
+footer{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  background-color: $background-color-nav;
+  border-top: 2px solid $color-nav-active;
+  & a{
+    color:$default-color;
+  }
+}

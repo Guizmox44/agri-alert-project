@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <img class="mx-auto d-block mt-5" src="{{ asset('images/logo/agri-200.png') }}" alt="logo-agri-alerte">
+    <div class="container form-container mt-5">
+        <h2 class="mt-5">Formulaire d'inscription</h2>
+        <hr>
+        <div class="container mt-5">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_label(form.username) }}
+                    {{ form_widget(form.username) }}
+                    <div class="form-container-error">{{ form_errors(form.username) }}</div>
+                </div>
+                <div class="col-md-4">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                    <div class="form-container-error">{{ form_errors(form.lastName) }}</div>
+
+                </div>
+                <div class="col-md-4">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    <div class="form-container-error">{{ form_errors(form.email) }}</div>
+                </div>
+            </div>
+            <div class="row form-container-spacing">
+                <div class="col-md-6">
+                    {{ form_label(form.password.first) }}
+                    {{ form_widget(form.password.first) }}
+                    <div class="form-container-error">{{ form_errors(form.password.first) }}</div>
+                </div>
+                <div class="col-md-6">
+                    {{ form_label(form.password.second) }}
+                    {{ form_widget(form.password.second) }}
+                    <div class="form-container-error">{{ form_errors(form.password.second) }}</div>
+                </div>
+            </div>
+            <div class="row form-container-spacing">
+                <div class="col-md-4 ">
+                    {{ form_label(form.address) }}
+                    {{ form_widget(form.address) }}
+                    <div class="form-container-error">{{ form_errors(form.address) }}</div>
+                </div>
+                <div class="col-md-4">
+                    {{ form_label(form.city) }}
+                    {{ form_widget(form.city) }}
+                    <div class="form-container-error">{{ form_errors(form.city) }}</div>
+                </div>
+                <div class="col-md-4">
+                    {{ form_label(form.zipCode) }}
+                    {{ form_widget(form.zipCode) }}
+                    <div class="form-container-error">{{ form_errors(form.zipCode) }}</div>
+                </div>
+            </div>
+            <div class="row form-container-spacing">
+                <div class="col-md-6">
+                    {{ form_label(form.siret) }}
+                    {{ form_widget(form.siret) }}
+                    <div class="form-container-error">{{ form_errors(form.siret) }}</div>
+                </div>
+                <div class="col-md-6">
+                    {{ form_label(form.numberLivestock) }}
+                    {{ form_widget(form.numberLivestock) }}
+                    <div class="form-container-error">{{ form_errors(form.numberLivestock) }}</div>
+                </div>
+            </div>
+            <div class="row form-container-spacing">
+                <div class="col-md-6 text-center">
+                    {{ form_label(form.agreeTerms) }}
+                    {{ form_widget(form.agreeTerms) }}
+                    <div class="form-container-error">{{ form_errors(form.agreeTerms) }}</div>
+                </div>
+            </div>
+            <input class="mt-4 mb-5 button-style-orange" type="submit" value="Créer le compte">
+            {{ form_end(form) }}
+        </div>
+        <hr>
+
+        <p class="pb-3">Déjà inscrit ? <a href="{{ path('login') }}">Se connecter</a></p>
+    </div>
+
+
+
+{% endblock %}

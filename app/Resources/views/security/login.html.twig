@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('reset') %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Réinitialisation de votre mot de passe</h4>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+    <img class="mx-auto d-block mt-5" src="{{ asset('images/logo/agri-200.png') }}" alt="logo-agri-alerte">
+    <div class="container form-container mt-5">
+        <h2 class="mt-5">Connexion</h2>
+
+        <div class="mt-5 col-8 col-lg-6 mx-auto">
+            {% if error %}
+                <div class="form-container-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <form class="mt-5" action="{{ path('login') }}" method="post">
+                <label for="username">Prénom:</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+                <label class="mt-3" for="password">Mot de passe:</label>
+                <input class="form-control" type="password" id="password" name="_password" />
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                {#
+                    If you want to control the URL the user
+                    is redirected to on success (more details below)
+                    <input type="hidden" name="_target_path" value="/account" />
+                #}
+
+                <button  class="mt-5 mb-5 button-style-orange" type="submit">Se connecter</button>
+            </form>
+        </div>
+        <hr>
+        <p class="pb-3">Pas encore inscrit ? <a href="{{ path('signin') }}">S'inscrire</a></p>
+        <p class="pb-3">Mot de passe oublié ? <a href="{{ path('reset') }}">Réinitialiser le mot de passe</a></p>
+    </div>
+{% endblock %}

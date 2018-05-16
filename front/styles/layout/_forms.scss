@@ -1,0 +1,85 @@
+.form-container{
+  background-color: $background-color-nav;
+  border-top: 2px solid $color-nav-active;
+  color: $color-text-form;
+  margin-bottom: 58px;
+
+  & hr{
+    background-color: $color-nav-active;
+  }
+}
+
+.form-container-error{
+  color: $color-warning;
+  text-align: center;
+}
+
+
+@media (min-width: 768px) {
+  .form-container-spacing{
+    margin-top: 2em;
+  }
+}
+
+.form-container-species {
+  background-color: $background-color-nav;
+  border-top: 2px solid $color-nav-active;
+  color: $color-text-form;
+  margin-bottom: 58px;
+  width: 150px;
+  border-radius: 10%;
+}
+
+#appbundle_animal_arrivedAt_year{
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_slaughterAt_day{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_slaughterAt_month{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_slaughterAt_year{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_birthDate_year{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_birthDate_day{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_animal_birthDate_month{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_product_expiryDate_year{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_product_expiryDate_month{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+
+#appbundle_product_expiryDate_day{
+  margin-bottom: 0.75em;
+  margin-right: 0.75em;
+}
+select{
+  margin-right: 0.75em;
+  margin-bottom:0.75em;
+}
+

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+    <div class="container form-container mt-5">
+        <h1 class="text-center p-2">Fiche race</h1>
+
+        <div class="mt-5 col-8 col-lg-6 mx-auto">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="d-flex justify-content-around p-2" >
+                <button type="submit" class="btn btn-primary mb-1  fas fa-plus-circle"> Créer</button>
+
+                {{ form_end(form) }}
+                <a href="{{ path('species_dash') }}" class="btn btn-secondary mb-1 ml-2 fas fa-arrow-circle-left"> Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('admin-reponse') %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Réponse</h4>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+
+    <div class="container form-container">
+        <h1>Rappel de votre message</h1>
+        <div>
+            <h2>{{ messages.sujet }}</h2>
+            <span> Le: {{ messages.createdAt|date ('d:m:Y') }}</span>
+            <p>{{ messages.description }}</p>
+        </div>
+        <hr>
+        <h2>Réponse à votre message</h2>
+        {{ form_start(updateSatus) }}
+        <input class="btn btn-danger" type="submit" value="Fermer la conversation">
+        {{ form_end(updateSatus) }}
+        {% if messages.responses is not empty %}
+            <div class="chat pb-5">
+                <ul>
+                    {% for reponse in messages.responses %}
+                        <li class="{{ (reponse.author == 'ROLE_ADMIN') ? 'other' : 'you'}}">
+                            <a class="user"><img alt="image admin" src=" {{ (reponse.author == 'ROLE_ADMIN') ?  asset('images/logo/agri-200.png') : asset('images/logo/logo-agriculteur-200.png')}}" /></a>
+                            <div class="date">
+                                Message envoyé il y a: {{ reponse.createdAt|get_compare_date(reponse.createdAt) }}
+                            </div>
+                            <div class="message">
+                                <p>
+                                    {{ reponse.content }}
+                                </p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p class="text-center pb-3">Aucune réponse à votre message</p>
+        {% endif %}
+    </div>
+
+    <div class="container form-container mt-3">
+        {% if messages.closed != true %}
+            <div class="container mt-5">
+                <h2 class="mt-5">Envoyer votre réponse</h2>
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_label(form.content) }}
+                        {{ form_widget(form.content) }}
+                        <div class="form-container-error">{{ form_errors(form.content) }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <input class="mt-4 mb-5 button-style-orange" type="submit" value="Envoyer votre réponse">
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        {% else %}
+            <p class="text-center p-5">La demande a été fermée par l'administrateur. Si votre problème persiste. Merci de bien vouloir ouvrir une nouvelle demande en cliquant
+                <a href="{{ path('message_list') }}">ici</a></p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

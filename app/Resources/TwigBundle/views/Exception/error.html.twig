@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid" id="error-hero">
+
+        <div id="homepage-hero-text">
+            <img class=" mx-auto d-block mt-5" src="{{ asset('images/logo/agri-200.png') }}" alt="logo-agri-alerte">
+            <h2 class="mt-5 mb-5">Erreur  {{ status_code }}</h2>
+
+                <a class="mt-5 button-style-orange" id="button_homepage" href="{{ path('homepage') }}">Accueil</a>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+    <div class="container w-80 m-auto">
+        <h1 class=" text-center text-dark">{{ tag }}</h1>
+        <div class="mt-5 sidenav-cheptel">
+            <ul class="nav d-flex justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('cheptel') }}">Gestion du cheptel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ tag == 'ovins' ? 'active' }}" href="{{ path('cheptel_species', {'tag' : 'ovins'}) }}">Ovins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ tag == 'bovins' ? 'active' }}" href="{{ path('cheptel_species', {'tag' : 'bovins'}) }}">Bovins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ tag == 'porcins' ? 'active' }}" href="{{ path('cheptel_species', {'tag' : 'porcins'}) }}">Porcins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ tag == 'caprins' ? 'active' }}" href="{{ path('cheptel_species', {'tag' : 'caprins'}) }}">Caprins</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container table-responsive-md form-container mt-2 rounded ">
+            <div id="add-product" class=" d-flex justify-content-center">
+                <a href="{{ path('cheptel_add', {'tag' : tag}) }}" type="button" class=" shadow-lg btn my-2 "><i class="fas fa-plus-circle"> {{ tag }}</i></a>
+            </div>
+            {% if species is not empty %}
+                {%  for animals in species %}
+                    {% for animal in animals.animals %}
+                        <table class="table table-striped table-hoverable mt-2 text-center product" >
+                            <thead><tr><th colspan="2" class="bg-light h3"><a href="{{ path('cheptel_show', {'tag' : tag, 'id' : animal.id}) }}">{{animal.earTag|upper }}</a></th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <th>Identification</th>
+                                    <td>{{ animal.earTag|upper }}</td>
+                                </tr>
+                                <tr>
+                                    <th> Date d'arrivée </th>
+                                    <td> {{ animal.arrivedAt|date('d:m:Y') }}</td>
+                                </tr>
+                                <tr><th>Actions</th>
+                                    <td>
+                                        <a href="{{ path('cheptel_show', {'tag' : tag, 'id' : animal.id}) }}" class="badge badge-primary p-2">voir</a>
+                                        <a href="{{ path('cheptel_edit', {'tag' : tag, 'id' : animal.id}) }}" class="badge badge-success p-2">modifier</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h2>Aucun animal trouvé</h2>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}

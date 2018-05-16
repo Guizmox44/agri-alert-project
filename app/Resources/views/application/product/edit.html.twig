@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+
+    <div class="container form-container">
+
+        <h1 class="text-center">Màj</h1>
+        <h2 class="text-center">produit</h2>
+        <div class="col-8 col-lg-6 mx-auto">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+        <div class="d-flex flex-column d-md-flex flex-md-row justify-content-between p-3">
+            <a href="{{ path('product_index') }}" class="btn btn-secondary mb-1">Retour liste</a>
+            <input type="submit" class="btn btn-success mb-1" value="Modifier" />
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+            <input class="btn btn-danger mb-2" type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+
+<div class="container w-80 m-auto">
+<h1 class=" text-center text-dark">{{ product.label }}</h1>
+ <div class="shadow-lg container table-responsive-md form-container mt-5 rounded ">
+       <table class="table  table-hoverable mt-2">
+        <tbody>
+            <tr>
+                <th>Numéro</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ product.label|upper }}</td>
+            </tr>
+            <tr>
+                {% if product.quantity <= product.alert %}
+                <th><i class="shadow-lg fas fa-exclamation-triangle  text-warning"></i> Quantité </th>
+                    <td><span class="shadow-lg text-alert bg-warning p-2 rounded">{{ product.quantity }} {{ product.unit }}</span></td>
+                {% else %}
+                <th> Quantité </th>
+                <td> {{ product.quantity }} {{ product.unit }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+
+                {% if date(product.expiryDate) < date() %}
+                    <th><i class="fas fa-minus-circle text-danger bg-white rounded-circle"></i> Date d'expiration</th>
+                    <td><span class="text-alert bg-danger p-2 rounded">{{ product.expiryDate|date('d-m-Y') }}</span></td>
+                {%  else %}
+                    <th>Date d'expiration</th>
+                    <td> {% if product.expiryDate %}{{ product.expiryDate|date('d-m-Y ') }}{% endif %} </td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Alert</th>
+                <td>{{ product.alert }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ path('product_index') }}" class="shadow-lg btn btn-sm btn-secondary mb-1">Retour liste</a>
+
+            <a href="{{ path('product_edit', { 'id': product.id }) }}" class="shadow-lg btn btn-sm btn-success mb-1">Modifier</a>
+
+
+            {{ form_start(delete_form) }}
+                <input class="shadow-lg btn btn-sm btn-danger" type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('ajout') %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Message</h4>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+
+    {% include ('application/slidenav.html.twig') %}
+
+    <div class="container form-container">
+        <h1>Vos messages</h1>
+        {% if getMessages is not empty%}
+            {% for message in getMessages %}
+                <div>
+                    <h2>{{ message.sujet }}</h2>
+                    <p>{{ message.description }}</p>
+                    <p> Envoyé le: {{ message.createdAt|date("d/m/Y") }}</p>
+                    <p>
+                        Statut de votre message:
+                        {% if message.closed == 0 %}
+                            Ouvert
+                        {% else %}
+                            fermer
+                        {% endif %}
+                    </p>
+                    <a href="{{ path('message_show', {'id': message.id }) }}">Consulter votre message</a>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>Aucun Message</p>
+        {% endif %}
+    </div>
+
+
+
+    <div class="container form-container mt-3">
+        <h2 class="mt-5">Envoyer un message</h2>
+        <div class="container mt-5">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_label(form.sujet) }}
+                    {{ form_widget(form.sujet) }}
+                    <div class="form-container-error">{{ form_errors(form.sujet) }}</div>
+                </div>
+                <div class="col-md-4">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                    <div class="form-container-error">{{ form_errors(form.description) }}</div>
+                </div>
+                <div class="col-md-4">
+                    <input class="mt-5 mb-5 button-style-orange p-1 w-50" type="submit" value="Envoyer">
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

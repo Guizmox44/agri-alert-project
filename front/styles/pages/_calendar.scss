@@ -1,0 +1,141 @@
+.calendar-main{
+    width: 60%;
+    margin-top: 8rem !important;
+}
+/* Title */
+#title-calendar {
+    @extend .text-dark, .m-auto;
+}
+
+/* Container of title and arrows */
+#calendar-title {
+    @extend .d-flex, .mb-5, .align-items-center, .justify-content-center, .border-bottom, .pb-4;
+}
+
+.fa-chevron-left, .fa-chevron-right, .fa-window-close {
+    font-size: 3em;
+    /* Hover des fleches */
+    &:hover {
+        color: grey;
+    }
+}
+
+/* Main container of calendar */
+#calendar-container {
+    @extend .d-flex, .flex-wrap;
+    height: auto;
+}
+/* Container of textual day */
+#calendar-textual-day {
+    @extend .text-center, .d-flex, .flex-nowrap;
+}
+
+.day-calendar, .day-textual-calendar, .locked-day-calendar {
+    width: 14%;
+}
+
+.day-textual-calendar {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+ //* Case vide du debut
+.locked-day-calendar, .day-calendar {
+    @extend .border, .border-dark;
+    height: 150px;
+}
+
+.day-calendar {
+    @extend .pt-1, .pl-2;
+    overflow: hidden;
+    //* Hover d'une case
+    &:hover {
+        background-color: lightgrey;
+        cursor: pointer;
+    }
+}
+
+.day-calendar-title {
+    @extend .rounded-circle, .p-1, .text-center, .d-block, .text-left;
+    border: 1px solid lightgrey;
+    width: 2rem;
+    height: 2rem;
+}
+
+.task-main {
+    @extend .m-1, .btn, .btn-info, .btn-sm;
+    display: none;
+}
+
+#calendar-form-title {
+    @extend .mt-3;
+    &:hover{
+        color: grey;
+        cursor: pointer;
+    }
+}
+
+#collapse-form-calendar-add .button-style-orange {
+    margin-bottom: 1% !important;
+}
+
+.animation-jour {
+    -webkit-animation: color_change 1s infinite alternate;
+    -moz-animation: color_change 1s infinite alternate;
+    -ms-animation: color_change 1s infinite alternate;
+    -o-animation: color_change 1s infinite alternate;
+    animation: color_change 1s infinite alternate;
+}
+
+@media (max-width: 768px) {
+    #title-calendar, .fa-chevron-left, .fa-chevron-right, .fa-window-close {
+        font-size: 2em;
+    }
+    .calendar-main{
+        width:80%;
+        margin-top: 5rem !important;
+    }
+   .locked-day-calendar, .day-calendar {
+       height: 3em;
+       padding: 0 !important;
+   }
+
+   .day-calendar {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+   }
+}
+
+@media (max-width: 425px) {
+    #title-calendar, .fa-chevron-left, .fa-chevron-right, .fa-window-close, #calendar-form-title {
+        font-size: 1em;
+    }
+}
+
+@mixin keyframes($animation) {
+    @-webkit-keyframes #{$animation} {
+        @content;
+    }
+    @-moz-keyframes #{$animation} {
+        @content;
+    }
+    @-o-keyframes #{$animation} {
+        @content;
+    }
+    @keyframes #{$animation} {
+        @content;
+    }
+}
+
+@include keyframes(color_change) {
+    0% {
+        color: red;
+        border-color: red;
+    }
+    100% {
+        opacity: 0.2;
+        filter: alpha(opacity=50);
+    }
+}

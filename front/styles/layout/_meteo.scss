@@ -1,0 +1,83 @@
+#soleil{
+  animation: rotation 20s infinite linear;
+}
+
+#soleil-rotation{
+  transform-origin: 50% 50%;
+  animation: rotation 20s infinite linear;
+}
+
+.soleil{
+  fill: #D1B339;
+}
+
+.nuage{
+  fill: #005C83;
+}
+
+.nuage-float-right{
+  animation: float-x-right 10s ease-in-out infinite;
+}
+
+.nuage-float-left{
+  animation: float-x-left 10s ease-in-out infinite;
+}
+
+.nuage-float-y{
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.rain{
+  fill: blue;
+}
+.rain-2{
+  animation: fadeIn 2s infinite alternate;
+}
+
+.rain-3{
+  animation: fadeIn 3s infinite alternate;
+}
+
+.rain-4{
+  animation: fadeIn 4s infinite alternate;
+}
+
+.rain-5{
+  animation: fadeIn 5s infinite alternate;
+}
+
+.thunder{
+  animation: fadeIn 1s infinite alternate;
+}
+
+.nuage-grey{
+  fill: grey;
+}
+
+.snow{
+  fill: $default-color;
+}
+
+.snow-3{
+  transform-origin: 50% 50%;
+  animation: rotation 3s infinite linear;
+}
+
+.snow-4{
+  transform-origin: 50% 50%;
+  animation: rotation 4s infinite linear;
+}
+
+.snow-5{
+  transform-origin: 50% 50%;
+  animation: rotation 5s infinite linear;
+}
+
+.snow-6{
+  transform-origin: 50% 50%;
+  animation: rotation 6s infinite linear;
+}
+
+.meteo-data{
+  text-transform: uppercase;
+}

@@ -1,0 +1,37 @@
+.navbar{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1030;
+}
+.nav-color{
+  background-color: $background-color-nav;
+  border-bottom: 2px solid $color-nav-active;
+  border-top: 2px solid $color-nav-active;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color: $default-color;
+  font-family: $primary-font;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  &:hover{
+    color: $color-nav-active;
+  }
+}
+
+.navbar-dark .navbar-nav .active > .nav-link{
+  color: $color-nav-active;
+}
+
+@media (min-width: 992px) {
+  .navbar{
+    top: 0;
+    height: 58px;
+  }
+
+  .nav-color{
+    border-top: none;
+  }
+}

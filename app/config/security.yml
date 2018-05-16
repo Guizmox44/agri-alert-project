@@ -1,0 +1,56 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        agri_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+
+            provider: agri_provider
+
+            logout:
+                path: /logout
+                target: /
+
+    access_control:
+        # Utilisateur connecté avec le role ADMIN
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # Utilisateur connecté
+        - { path: ^/dashboard, roles: ROLE_USER }
+        - { path: ^/profil, roles: ROLE_USER }
+        - { path: ^/cheptel, roles: ROLE_USER }
+        - { path: ^/breed, roles: ROLE_USER }
+        - { path: ^/calendar, roles: ROLE_USER }
+        - { path: ^/message, roles: ROLE_USER }
+        - { path: ^/product, roles: ROLE_USER }
+        - { path: ^/profil, roles: ROLE_USER }
+        - { path: ^/logout, roles: ROLE_USER }
+        # Utilisateur anonyme
+        - { path: ^/cgu, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/laTeam, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/reset, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/signin, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER

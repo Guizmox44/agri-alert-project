@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+    <div class="container p-5">
+        <h1 class="text-center h1-orange">Cheptel</h1>
+        <hr class="hr-orange">
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="{{ path('cheptel_species', {'tag' : 'ovins'}) }}">
+                    <div class="rad-info-box txt-color">
+                        <div>
+                            <img src="{{ asset('images/animaux/ovins.png') }}" class="mx-auto d-block" alt="photo ovins">
+                        </div>
+                        <span class="heading">Ovins</span>
+                        <span class="value"><span>{{ ovins }}</span></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a href="{{ path('cheptel_species', {'tag' : 'bovins'}) }}">
+                    <div class="rad-info-box txt-color">
+                        <div>
+                            <img src="{{ asset('images/animaux/bovins.png') }}" class="mx-auto d-block" alt="photo bovins">
+                        </div>
+                        <span class="heading">Bovins</span>
+                        <span class="value"><span>{{ bovins }}</span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="{{ path('cheptel_species', {'tag' : 'porcins'}) }}">
+                    <div class="rad-info-box txt-color">
+                        <div>
+                            <img src="{{ asset('images/animaux/porcins.png') }}" class="mx-auto d-block" alt="photo porcins">
+                        </div>
+                        <span class="heading">Porcins</span>
+                        <span class="value"><span>{{ porcins }}</span></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a href="{{ path('cheptel_species', {'tag' : 'caprins'}) }}">
+                    <div class="rad-info-box txt-color">
+                        <div>
+                            <img src="{{ asset('images/animaux/caprins.png') }}" class="mx-auto d-block" alt="photo caprins">
+                        </div>
+                        <span class="heading">Caprins</span>
+                        <span class="value"><span>{{ caprins }}</span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include ('application/slidenav.html.twig') %}
+
+    <a class="introduction-farm" href='http://example.com/' data-intro='Hello step one!'></a>
+    <div class="container p-5">
+        <h1 class="text-center h1-orange">Tableau de bord</h1>
+        <hr class="hr-orange">
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <a href="{{ path('calendar_show', {'day' : "now"|date('Y-m-d') }) }}">
+                    <div class="rad-info-box txt-color">
+                        <i class="d-none d-md-block fas fa-calendar-alt"></i>
+                        <span class="heading">Calendrier</span>
+                        <span class="value"><span>Le {{ todayDate|get_today_date }}</span></span>
+                        <hr>
+                        <div class="calendar_events mt-2">
+                            <p class="ce_title">Évènements à venir aujourd'hui:</p>
+
+                            {% for task in tasks %}
+                                <div class="event_item">
+                                    <div class="ei_Dot"></div>
+                                    <div class="ei_Title">{{ task.day|date('H:i') }}</div>
+                                    <div class="ei_Copy">{{ task.title }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="rad-info-box txt-color">
+                    <div class="card-meteo">{{ include('application/meteo/' ~ weather.image ~ '.html.twig') }}</div>
+                    <span class="heading">Meteo</span>
+                    <span class="value"><span>{{ weather.temperature }}° {{ user.city }}</span></span>
+                    <div class="text-center">
+                        <span class="value">Humidité: {{ weather.moisture }}&#37</span>
+                        <span class="value">Vent: {{ weather.windSpeed }}Km/h</span>
+                    </div>
+                    <div class="text-center mt-2">
+                        <span class="meteo-data">meteo mise à jour à: {{ weather.updatedAt|date('H:i') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="{{ path('message_list') }}">
+                    <div class="rad-info-box txt-color">
+                        <i class="d-none d-md-block fas fa-envelope"></i>
+                        <span class="heading">Demande en cours (message)</span>
+                        <span class="value">
+                        <span>{{ messages|length }}</span>
+                        </span>
+                        <hr>
+                        <div class="calendar_events mt-2">
+                            {% for message in messages %}
+                                <div class="event_item">
+                                    <div class="ei_Dot"></div>
+                                    <div class="ei_Title"><a href="{{ path('message_show',{'id':message.id}) }}">{{ message.sujet }}</a></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-6">
+                    <div class="rad-info-box txt-color">
+                        <i class="d-none d-md-block fas fa-bell"></i>
+                        <span class="heading">Alerte</span>
+                        <span class="value"><span>{{ products|length }} </span></span>
+                             <hr>
+                        <div class="calendar_events mt-2">
+                        {% for product in products %}
+                            <div class="event_item">
+                                <div class="ei_Dot d-none d-sm-inline-block"></div>
+                                <div class="ei_Title"><a href="{{ path('product_show',{'id':product.id}) }}">Commander du {{ product.label }} (plus que {{ product.quantity }} {{ product.unit }})</a></div>
+                            </div>
+                            <hr class="d-block d-md-none">
+                        {% endfor %}
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
